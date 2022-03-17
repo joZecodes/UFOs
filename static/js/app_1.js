@@ -1,14 +1,13 @@
 // import the data from data.js
 const tableData = data;
-
 // Reference the HTML table using d3
 var tbody = d3.select("tbody");
 
 function buildTable(data) {
-    // Clear out any existing data
+    // First, clear out any existing data
     tbody.html("");
   
-    // Loop through each object in the data
+    // Next, loop through each object in the data
     // and append a row and cells for each value in the row
     data.forEach((dataRow) => {
       // Append a row to the table body
@@ -19,11 +18,11 @@ function buildTable(data) {
       Object.values(dataRow).forEach((val) => {
         let cell = row.append("td");
         cell.text(val);
-      });
+        }
+      );
     });
   }
-
-  function handleClick() {
+function handleClick() {
     // Grab the datetime value from the filter
     let date = d3.select("#datetime").property("value");
     let filteredData = tableData;
@@ -40,10 +39,10 @@ function buildTable(data) {
     // @NOTE: If no date was entered, then filteredData will
     // just be the original tableData.
     buildTable(filteredData);
-  }
+}
   
-  // Attach an event to listen for the form button
-  d3.selectAll("#filter-btn").on("click", handleClick);
+// Attach an event to listen for the form button
+d3.selectAll("#filter-btn").on("click", handleClick);
   
-  // Build the table when the page loads
-  buildTable(tableData);
+// Build the table when the page loads
+buildTable(tableData);
